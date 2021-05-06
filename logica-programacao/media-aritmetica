@@ -1,0 +1,31 @@
+// Programa para cálculo de média aritmética
+
+programa
+{
+
+	funcao inicio()
+	{
+		real nota01, nota02, nota03, nota04, media
+		cadeia aluno
+
+		escreva("Digite o nome do aluno: ")
+		leia(aluno)
+		escreva("Digite a Nota 01: ")
+		leia(nota01)
+		escreva("Digite a Nota 02: ")
+		leia(nota02)
+		escreva("Digite a Nota 03: ")
+		leia(nota03)
+		escreva("Digite a Nota 04: ")
+		leia(nota04)
+
+		media = (nota01+nota02+nota03+nota04)/4
+		escreva(aluno + ", sua média é: " + media)
+
+		se(media>=7){
+			escreva("\n" + "Parabéns, você foi aprovado(a)!")
+		} senao {
+			escreva("\n" + "Infelizmente você foi reprovado(a)!")
+		}
+	}
+}

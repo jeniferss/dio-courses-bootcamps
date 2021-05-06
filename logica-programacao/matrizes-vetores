@@ -1,0 +1,33 @@
+programa
+{
+
+	funcao inicio()
+	{
+		cadeia Vetor[5]
+		cadeia Matriz[5][3]
+
+		cadeia cesta[][] = {{"Uva", "300"},{"Melancia", "200"},{"Morango", "100"}}
+		cadeia frutas[4]
+
+		inteiro contador
+		contador = 0
+
+		inteiro cont
+		cont = 0
+
+		frutas[0]="Uva"
+		frutas[1]="Morango"
+		frutas[2]="Melancia"
+		frutas[3]="Abacate"
+
+		faca{
+			escreva(frutas[contador] + "\n")
+			contador++
+		} enquanto(contador<=3)
+
+		faca{
+			escreva("\n" + "Fruta: " + cesta[cont][0] + " - " + "Quantidade: " + cesta[cont][1])
+			cont++
+		} enquanto(cont<=2)
+	}
+}
