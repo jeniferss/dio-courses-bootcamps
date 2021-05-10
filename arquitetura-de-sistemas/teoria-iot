@@ -1,0 +1,114 @@
+IOT: Internet das coisas
+
+Início da Internet - ARPANET - Conectar computadores de centros de
+pesquisa
+
+Internet: rede de pessoas conectadas, fluxo de informações
+Internet das coisas: quando as coisas passam a utilizar essa rede para
+trocar dados
+
+- Por quê?
+* Embutir sensores em objetos do dia-a-dia
+* Coletar dados dos sensores
+* Usar o dado para tomar decisão
+
+Things (Implementação)  -> Cloud (Processamento e armazenamento) ->
+Intelligence(Tomada de decisão - benéfica)
+
+Computação Ubíqua: a tecnologia passa a não ser mais vista, "recua para o
+plano de fundo de nossas vida", "se torna eficiente"
+
+Desafios:
+1. Privacidade e Segurança
+2. Quantidade exponencial de dispositivos conectados na rede
+3. Ser capaz de processar e armazenar uma enorme quantidade de informações
+4. Gerar valor a partir dos dados coletados
+-------------------------------------------------------------------------------
+Arquitetura IOT
+
+Escolha:
+- Baixo consumo de energia
+- Redes de dados limitado
+- Resiliência -> Buffer
+- Segurança
+- Customização
+- Baixo custo
+-------------------------------------------------------------------------------
+Arduino:
+* Plataforma de Prototipagem
+* Com entradas/saídas
+* Desenvolvedor escreve em C/C++
+* Interface serial ou USB
+* Shields
+
+MCUs:
+* Microcontrolador de chip único
+* Sistema operacional real time
+* Embarcado
+* Uso industrial, médico militar
+
+Raspberry Pi:
+* Computador completo
+* Hardware integrado em uma única placa
+* Roda SO Linux ou Windows
+* Uso doméstico e comercial
+-------------------------------------------------------------------------------
+Protocolo de comunicação
+
+- Embarcado: ex. GPS tracker em um carro ou app de localização no smartphone
+- Objeto -> MQTT -> Cloud
+
+MQTT: Protocolo de comunicação do IOT
+* Base na pilha do TCP/IP
+* Protocolo de mensagem assíncrona (M2M - machine to machine)
+* Criado pela IBM para conectar sensores de pipelines de petróleo a satélites
+* Padrão OASIS suportado pelas linguagens de programação mais populares
+
+Modelo Client Servidor: Síncrono
+
+Client -> Request -> Server
+          (HTTP)  <- Response
+
+Modelo Publish/Subscribe:
+
+Publish (ex. GPS)          -> MQTT Broker (Roteador de Mensagens)
+Publish (ex. acelerometro)
+
+-> Publish (nuvem)
+-> Subscribe (smartphone)
+-------------------------------------------------------------------------------
+A flexibilidade dos tópicos:
+
+  mqtt     ://  broker.io  /     a6g319      /  gps  /   position
+protocolo         broker     user identifier  sensor  information type
+
++ -> Todos os usuários
+# -> Todos os sensores e seus dados
+
+QoS: níveis diferentes de qualidade de serviço
+
+0:
+* Nível mínimo de menor esforço
+* Sem garantia de entrega
+* Mensagem não é retransmitida
+* Um fluxo de comunicação
+
+1:
+* Garante que a mensagem foi entregue no mínimo uma vez ao receber
+* Mensagem pode ser retransmitida se não houver confirmação de entrega
+* Um par de comunicação de dois fluxos
+
+2:
+* Garante que a mensagem foi entregue no mínimo uma vez ao receber
+* Mensagem pode ser retransmitida se não houver confirmação de entrega
+* Mínimo dois pares de comunicação fluxo duplo
+* Garante que a mensagem seja consumida uma única vez pelo Broker
+-------------------------------------------------------------------------------
+Cloud:
+* Grande e cada vez maior de devices conectados
+* TBs ou PBs de informação
+* Potencial de escala global
+
+                    Data store (armazenar)
+Broker -> Worker ->
+                    Cache -> interface de visualização de dados (análise)

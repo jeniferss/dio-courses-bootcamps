@@ -1,0 +1,89 @@
+Fundamentos de Arquiteturas de Sistemas
+
+Tipos de Arquiteturas:
+
+* Monolito: Única aplicação.
+Aplicação -> HTTP -> Proxy -> Servidor -> Aplicação (Instancia x) ->
+Banco de dados
+Instancias são criadas para suportar um número grande de requisições ou erros
+
+* Microserviços #1
+Aplicação -> HTTP -> Proxy -> Nodo x (Serviço x) -> Ação x
+Os serviços se conversam
+Ex. Autenticação e Pagamento
+- Muito Complexo para manter
+
+* Microserviços #2
+Aplicação -> HTTP -> Proxy -> Nodo x (Serviço x) -> Ação x
+Os serviços se conversam através de um intermediador (Message Broker)
+Se um sistema falhar, o outro continua funcionando até as informações voltarem,
+são independentes
+- Se o Message Broke falha, a arquitetura quebra
+
+* Microserviços #3
+Aplicação -> HTTP -> Proxy -> -> Gerenciador pipeline -> Nodo x (Serviço x)
+-> Ação x
+- Cada serviço tem uma responsabilidade específica
+- Gerenciador de pipeline designa os passos e as ordens
+- Os serviços funcionam separadamente, mas um passo depende do outro
+- Se der erro em um passo, ele deve saber voltar do inicio e reverter as ações
+a fim de não gerar inconsistências
+-------------------------------------------------------------------------------
+Pros e Contras
+
+* Monolito
+
+Pros:
+- Baixa Complexidade
+- Monitoramento simplificado
+
+Contras:
+- Stack Única
+- Compartilhamento de Recursos
+- Acoplamento
+- Mais complexa a estabilidade
+- Maior gasto de memória
+
+* Microserviços #1
+
+Pros:
+- Stack dinâmica
+- Simples escalabilidade
+
+Contras:
+- Acoplamento
+- Monitoramento mais complexo
+- Provisionamento mais complexo
+
+* Microserviços #2
+
+Pros:
+- Stack dinâmica
+- Simples escalabilidade
+- Desacoplamento
+
+Contras:
+- Monitoramento mais complexo
+- Provisionamento mais complexo
+
+* Microserviços #3
+
+Pros:
+- Stack dinâmica
+- Simples escalabilidade
+- Desacoplamento
+- Menor Complexidade
+
+Contras:
+- Provisionamento mais complexo
+- Plataforma inteira depende do gerenciador de pipeline
+-------------------------------------------------------------------------------
+Gerenciamento de erros e volume de acesso
+
+Onde é mais complexo:
+- Processos Assíncronos (Microserviços #2) -> Criar uma fila diferente
+- Pipeline
+
+Solução:
+- Dead letter queue
+- Filas de re-tentativas

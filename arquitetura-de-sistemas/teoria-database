@@ -1,0 +1,114 @@
+Dados: é um conjunto de valores de ocorrência que descrevem uma instância,
+características, etc.
+Dados -> Informação -> Conhecimento
+
+Modelo Sustentável:
+* Estruturação
+* Durabilidade
+* Velocidade
+* Controle de Acesso
+* Isolamento
+
+Com dados brutos conseguimos informações, e com ela, o Conhecimento
+-------------------------------------------------------------------------------
+Banco de dados
+- Abstração: pegar a dados no meio físico e organizar de forma prática que
+traga informação e Conhecimento para os usuários
+
+- SGDBs: Sistemas Gerenciadores dos Bancos de dados
+* Linguagem de Definição -> definir as estruturas dos dados
+* Linguagem de Manipulação -> recuperar as informações
+* Dicionário de Dados -> banco de dados dentro do banco de dados que guarda
+toda essa estrutura
+
+- Modelo Flat: registro em linha, divisão de colunas, dicionário da Informação,
+tabela
+
+- Modelo Hierárquico: divisão de certos aspectos da informação em grupos em
+árvore hierárquica
+
+- Modelo Relacional: um conjunto de tabelas que se relacionam obedecendo algumas
+regras
+
+Outros Modelos: Redes-Grapho, Orientado a Objetos, Objeto-Relacional, Big Data
+-------------------------------------------------------------------------------
+Banco de dados Relacionais - Mais utilizado
+- SGDRB:
+* Composto por entidades que agrupam as informações (tabelas)
+* Linhas da tabela são chamadas de Registros ou Tuplas
+* Colunas - Conteúdos das linhas
+* Chaves - Primary Key: Unidade da informação
+         - Foreign Key: Herança de outra tabela, cria relacionamentos entre
+           instancias
+
+Modelagem:
+1. Modelo conceitual - MER
+Instancias, atributos e relações
+
+2. Modelo Lógico - Implementação
+MER - DER: Diagrama de relacionamento
+Entidades Fortes: Não dependem de outra para existir
+Entidade Fracas: Dependem de outras para existir
+Cardinalidade: M (1..N), N(0..N), 1(1..1)
+Quando o relacionamento for de M para N necessita de uma Entidade Associativa
+
+ Normalização:
+ 1a .. 5a - Formas Normais
+ 1, 2, 3a - Mais comum
+
+ 1a - elementos únicos em uma linha, unicidade de uma classificação
+ * Uma coluna com mais de uma informação para uma mesma linha deve ser criada ou
+ uma nova coluna ou uma nova entidade (ex. números de telefone)
+* Para evitar erros de digitação: transformar em códigos ligados com uma nova
+entidade com sua nomenclatura (ex. código de profissão)
+
+3a Forma:
+* Os valores precisam ser inteiramente dependentes das chaves primárias e Não
+podem ser dependentes de valores que não são chaves
+-------------------------------------------------------------------------------
+SQL: Linguagem Estruturada de Consulta
+* DDL - Data Definition Language (Estrutura do banco)
+* DML - Data Manipulation Language  (Manipulação dos dados)
+* DQL - Data Query Language (Acesso aos dados)
+
+DDL:
+Create Table Cliente
+(
+Codigo number(10) Not Null Primary Key,
+Nome varchar(50) Not Null,
+Telefone varchar(15)
+)
+
+DML:
+Insert into Cliente (Codigo, Nome, Telefone)
+values(1, "Lorem ipsum", "(88) 999 999")
+
+Delete from Cliente
+Where Codigo = 1
+
+Update Cliente
+set Nome = "Lorem Ipsum"
+Where Codigo = 1
+
+DQL:
+Select Codigo,
+       Nome
+from Client
+<Where> Codigo = 1
+<Group by> Profissao
+<Having> Count(1) > 0
+<Order by> Nome, Codigo
+
+Query:
+
+Select Codigo,
+       Nome
+from Client
+Where Codigo = 2
+      Union
+Select Codigo,
+       Nome
+from Client
+Where Nome = "Lorem Ipsum"
+
+* Mesma quantidade de colunas com tipos de dados iguais 
